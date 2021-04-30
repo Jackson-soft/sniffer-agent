@@ -123,11 +123,7 @@ func (ms *MysqlSession) checkFinish() bool {
 	}
 
 	checkNode := ms.coverRanges.head.next
-	if checkNode.end-checkNode.begin == int64(len(ms.cachedStmtBytes)) {
-		return true
-	}
-
-	return false
+	return checkNode.end-checkNode.begin == int64(len(ms.cachedStmtBytes))
 }
 
 func (ms *MysqlSession) Close() {
@@ -323,11 +319,11 @@ func (ms *MysqlSession) GenerateQueryPiece() (qp model.QueryPiece) {
 	return mqp
 }
 
-func filterQueryPieceBySQL(mqp *model.PooledMysqlQueryPiece, querySQL []byte) (*model.PooledMysqlQueryPiece) {
+func filterQueryPieceBySQL(mqp *model.PooledMysqlQueryPiece, querySQL []byte) *model.PooledMysqlQueryPiece {
 	if mqp == nil || querySQL == nil {
 		return nil
 
-	} else if (uselessSQLPattern.Match(querySQL)) {
+	} else if uselessSQLPattern.Match(querySQL) {
 		return nil
 	}
 

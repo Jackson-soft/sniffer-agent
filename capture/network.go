@@ -244,7 +244,7 @@ func readFromServerPackage(
 	}
 
 	tcpPayload := tcpPkt.Payload
-	if (len(tcpPayload) < 1) {
+	if len(tcpPayload) < 1 {
 		return
 	}
 
@@ -280,7 +280,7 @@ func readToServerPackage(
 	}
 
 	tcpPayload := tcpPkt.Payload
-	if (len(tcpPayload) < 1) {
+	if len(tcpPayload) < 1 {
 		return
 	}
 

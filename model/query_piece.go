@@ -1,9 +1,10 @@
 package model
 
 import (
+	"time"
+
 	jsoniter "github.com/json-iterator/go"
 	"github.com/pingcap/tidb/util/hack"
-	"time"
 )
 
 var jsonIterator = jsoniter.ConfigCompatibleWithStandardLibrary
@@ -49,7 +50,7 @@ func NewBaseQueryPiece(
 	return
 }
 
-func (bqp *BaseQueryPiece) NeedSyncSend() (bool) {
+func (bqp *BaseQueryPiece) NeedSyncSend() bool {
 	return bqp.SyncSend
 }
 
@@ -57,7 +58,7 @@ func (bqp *BaseQueryPiece) SetNeedSyncSend(syncSend bool) {
 	bqp.SyncSend = syncSend
 }
 
-func (bqp *BaseQueryPiece) String() (*string) {
+func (bqp *BaseQueryPiece) String() *string {
 	content := bqp.Bytes()
 	contentStr := hack.String(content)
 	return &contentStr
@@ -73,7 +74,7 @@ func (bqp *BaseQueryPiece) Bytes() (content []byte) {
 	return bqp.jsonContent
 }
 
-func (bqp *BaseQueryPiece) GetSQL() (*string) {
+func (bqp *BaseQueryPiece) GetSQL() *string {
 	return nil
 }
 

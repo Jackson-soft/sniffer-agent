@@ -24,7 +24,7 @@ func Server() {
 	}
 }
 
-func initConfig()  {
+func initConfig() {
 	_ = catpurePacketRate.setVal(catpurePacketRateVal)
 }
 
@@ -44,7 +44,7 @@ func outletGetConfig(resp http.ResponseWriter, req *http.Request) {
 	}()
 
 	ep := &struct {
-		ConfigName string  `validate:"nonzero" json:"config_name"`
+		ConfigName string `validate:"nonzero" json:"config_name"`
 	}{}
 	up := hu.NewUnpacker(req, ep, nil)
 	if err := up.Unpack(); err != nil {
@@ -72,8 +72,8 @@ func outletSetConfig(resp http.ResponseWriter, req *http.Request) {
 	}()
 
 	ep := &struct {
-		ConfigName string  `validate:"nonzero" json:"config_name"`
-		Value interface{}  `json:"value"`
+		ConfigName string      `validate:"nonzero" json:"config_name"`
+		Value      interface{} `json:"value"`
 	}{}
 	up := hu.NewUnpacker(req, ep, nil)
 	if err := up.Unpack(); err != nil {

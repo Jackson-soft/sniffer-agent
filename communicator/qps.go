@@ -83,8 +83,8 @@ func computeQPS() (qps int64) {
 		return 0
 	}
 
-	qpsVal := float64(time.Second.Nanoseconds() /
-		((nowNano - minExecTimeNano) / recentRecordNum)) /
+	qpsVal := float64(time.Second.Nanoseconds()/
+		((nowNano-minExecTimeNano)/recentRecordNum)) /
 		catpurePacketRate.mysqlCPR
 	return int64(math.Floor(qpsVal))
 }

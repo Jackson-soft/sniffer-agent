@@ -2,25 +2,26 @@ package communicator
 
 import (
 	"flag"
-	"github.com/gorilla/mux"
 	_ "net/http/pprof"
 	"sync"
+
+	"github.com/gorilla/mux"
 )
 
 const (
 	CAPTURE_PACKET_RATE = "capture_packet_rate"
-	QPS = "qps"
+	QPS                 = "qps"
 )
 
 var (
 	communicatePort int
-	router = mux.NewRouter()
+	router          = mux.NewRouter()
 )
 
 var (
-	configMapLock     sync.RWMutex
-	configMap         map[string]configItem
-	catpurePacketRate *capturePacketRateConfig
+	configMapLock        sync.RWMutex
+	configMap            map[string]configItem
+	catpurePacketRate    *capturePacketRateConfig
 	catpurePacketRateVal float64
 )
 
@@ -37,7 +38,7 @@ func init() {
 	regsiterConfig()
 }
 
-func regsiterConfig()  {
+func regsiterConfig() {
 	configMap[CAPTURE_PACKET_RATE] = catpurePacketRate
 	configMap[QPS] = &qpsConfig{}
 }

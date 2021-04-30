@@ -15,4 +15,3 @@ var (
 func init() {
 	flag.StringVar(&serviceType, "service_type", "mysql", "service type. Default is mysql")
 }
-

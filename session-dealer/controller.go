@@ -16,7 +16,7 @@ func NewSession(sessionKey, clientIP *string, clientPort int, srcIP *string, src
 	return
 }
 
-func CheckParams()  {
+func CheckParams() {
 	switch serviceType {
 	case ServiceTypeMysql:
 		mysql.CheckParams()

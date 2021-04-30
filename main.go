@@ -3,9 +3,10 @@ package main
 import (
 	"flag"
 	"fmt"
+	"os"
+
 	sd "github.com/zr-hebo/sniffer-agent/session-dealer"
 	"github.com/zr-hebo/sniffer-agent/session-dealer/mysql"
-	"os"
 
 	log "github.com/sirupsen/logrus"
 	"github.com/zr-hebo/sniffer-agent/capture"
@@ -13,15 +14,13 @@ import (
 	"github.com/zr-hebo/sniffer-agent/exporter"
 )
 
-var (
-	logLevel string
-)
+var logLevel string
 
-func init()  {
+func init() {
 	flag.StringVar(&logLevel, "log_level", "warn", "log level. Default is info")
 }
 
-func initLog()  {
+func initLog() {
 	log.SetFormatter(&log.TextFormatter{})
 	log.SetOutput(os.Stdout)
 	switch logLevel {
@@ -38,7 +37,7 @@ func initLog()  {
 	}
 }
 
-func main()  {
+func main() {
 	flag.Parse()
 	prepareEnv()
 
@@ -46,7 +45,7 @@ func main()  {
 	mainServer()
 }
 
-func mainServer()  {
+func mainServer() {
 	ept := exporter.NewExporter()
 	networkCard := capture.NewNetworkCard()
 	log.Info("begin listen")
@@ -62,7 +61,7 @@ func mainServer()  {
 	os.Exit(1)
 }
 
-func prepareEnv()  {
+func prepareEnv() {
 	initLog()
 	sd.CheckParams()
 	mysql.PrepareEnv()

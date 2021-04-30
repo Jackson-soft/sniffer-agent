@@ -8,9 +8,9 @@ import (
 type MysqlQueryPiece struct {
 	BaseQueryPiece
 
-	SessionID    *string `json:"-"`
-	ClientHost   *string `json:"cip"`
-	ClientPort   int     `json:"cport"`
+	SessionID  *string `json:"-"`
+	ClientHost *string `json:"cip"`
+	ClientPort int     `json:"cport"`
 
 	VisitUser    *string `json:"user"`
 	VisitDB      *string `json:"db"`
@@ -18,7 +18,7 @@ type MysqlQueryPiece struct {
 	CostTimeInMS int64   `json:"cms"`
 }
 
-func (mqp *MysqlQueryPiece) String() (*string) {
+func (mqp *MysqlQueryPiece) String() *string {
 	content := mqp.Bytes()
 	contentStr := hack.String(content)
 	return &contentStr
